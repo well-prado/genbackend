@@ -1,0 +1,62 @@
+{
+  "name": "genbackend",
+  "version": "0.1.0",
+  "description": "A Generative Backend Builder for nanoservice-ts",
+  "main": "dist/index.js",
+  "bin": {
+    "genbackend": "dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "npm run build && node dist/index.js",
+    "dev": "nodemon --watch src --exec 'ts-node' src/index.ts",
+    "cli": "ts-node src/cli.ts",
+    "lint": "eslint src/**/*.ts --fix",
+    "test": "jest"
+  },
+  "keywords": [
+    "nanoservice",
+    "nanoservice-ts",
+    "generative",
+    "backend",
+    "api"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@nanoservice-ts/api-call": "^0.1.20",
+    "@nanoservice-ts/helper": "^0.1.4",
+    "@nanoservice-ts/if-else": "^0.0.21",
+    "@nanoservice-ts/runner": "^0.1.17",
+    "@nanoservice-ts/shared": "^0.0.7",
+    "@types/ejs": "^3.1.5",
+    "body-parser": "^1.20.2",
+    "chalk": "^4.1.2",
+    "commander": "^12.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.9",
+    "express": "^4.19.2",
+    "nanoid": "^3.3.7",
+    "openai": "^4.29.0",
+    "swagger-ui-express": "^5.0.0",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1.19.5",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.11.28",
+    "@types/swagger-ui-express": "^4.1.6",
+    "@types/uuid": "^9.0.8",
+    "@typescript-eslint/eslint-plugin": "^7.2.0",
+    "@typescript-eslint/parser": "^7.2.0",
+    "eslint": "^8.57.0",
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.0",
+    "ts-jest": "^29.1.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  }
+}
