@@ -1,8 +1,8 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "movie-listing-service",
-    "description": "A backend service that provides endpoints for listing movies and adding new movies to the list.",
+    "title": "todo-list-service",
+    "description": "A backend service for managing a todo list with functionalities to add, list, update, and delete tasks.",
     "version": "0.1.0"
   },
   "servers": [
@@ -11,28 +11,56 @@
     }
   ],
   "paths": {
-    "/movies": {
-      "get": {
-        "summary": "Returns a list of all movies.",
-        "description": "Returns a list of all movies.",
+    "/tasks": {
+      "post": {
+        "summary": "Adds a new task to the todo list.",
+        "description": "Adds a new task to the todo list.",
         "responses": {
           "200": {
-            "description": "Successful response with a list of movies",
+            "description": "Task successfully added",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "name": {
-                        "type": "string"
-                      },
-                      "description": {
-                        "type": "string"
-                      },
-                      "releaseYear": {
-                        "type": "number"
+                  "type": "object",
+                  "properties": {
+                    "taskId": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [],
+        "requestBody": {
+          "description": "The task data to be added",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Lists all tasks in the todo list.",
+        "description": "Lists all tasks in the todo list.",
+        "responses": {
+          "200": {
+            "description": "List of tasks",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "tasks": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
                       }
                     }
                   }
@@ -41,13 +69,15 @@
             }
           }
         }
-      },
-      "post": {
-        "summary": "Adds a new movie to the list.",
-        "description": "Adds a new movie to the list.",
+      }
+    },
+    "/tasks/{taskId}": {
+      "put": {
+        "summary": "Updates an existing task in the todo list.",
+        "description": "Updates an existing task in the todo list.",
         "responses": {
           "200": {
-            "description": "Movie added successfully",
+            "description": "Task successfully updated",
             "content": {
               "application/json": {
                 "schema": {
@@ -62,9 +92,19 @@
             }
           }
         },
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "taskId",
+            "in": "path",
+            "description": "The ID of the task to be updated",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
-          "description": "Name of the movie",
+          "description": "The updated task data",
           "required": true,
           "content": {
             "application/json": {
@@ -75,6 +115,38 @@
             }
           }
         }
+      },
+      "delete": {
+        "summary": "Deletes a task from the todo list.",
+        "description": "Deletes a task from the todo list.",
+        "responses": {
+          "200": {
+            "description": "Task successfully deleted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "taskId",
+            "in": "path",
+            "description": "The ID of the task to be deleted",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     }
   },
